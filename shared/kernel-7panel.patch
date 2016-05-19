@@ -1,0 +1,16 @@
+diff --git a/arch/arm/boot/dts/acme-acqua.dts b/arch/arm/boot/dts/acme-acqua.dts
+index 2cf1821..9f91b99 100644
+--- a/arch/arm/boot/dts/acme-acqua.dts
++++ b/arch/arm/boot/dts/acme-acqua.dts
+@@ -122,9 +122,9 @@
+        };
+ 
+     panel: panel {
+-        compatible = "acme,43inch", "simple-panel";
++        /* compatible = "acme,43inch", "simple-panel"; */
+         /* compatible = "acme,50inch", "simple-panel"; */
+-        /* compatible = "acme,70inch", "simple-panel"; */
++        compatible = "acme,70inch", "simple-panel";
+         
+         status = "okay";
+ 
