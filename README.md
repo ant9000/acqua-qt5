@@ -25,5 +25,7 @@ Qt5 stuff will be in:
 - /data/Qt5/target for cross-compiling for Acqua
 - /data/target-rootfs/opt/Qt5 should be copied to the board
 
-The kernel stuff to be deployed will be in:
+Kernel stuff to be deployed on the board will be in:
 - /data/build/kernel/deploy
+
+Folder `shared/` on the host will be synced with `/vagrant` inside the VM.
