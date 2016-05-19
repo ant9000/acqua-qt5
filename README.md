@@ -46,7 +46,7 @@ Kernel stuff is organized as follows:
 - /data/build/kernel/deploy will contain the stuff to be deployed on the board
 
 To produce a custom kernel:
-``
+```
 export MAKE_ARGS="-j8 ARCH=arm CROSS_COMPILE=arm-linux-gnueabihf-"
 cd /data/build/kernel/src
 make $MAKE_ARGS menuconfig
@@ -54,14 +54,14 @@ make $MAKE_ARGS zImage modules
 make $MAKE_ARGS modules_install INSTALL_MOD_PATH=../deploy/
 make $MAKE_ARGS firmware_install INSTALL_MOD_PATH=../deploy/
 cp arch/arm/boot/zImage ../deploy/boot/
-``
+```
 
 To configure the devicetree:
-``
+```
 export MAKE_ARGS="-j8 ARCH=arm CROSS_COMPILE=arm-linux-gnueabihf-"
 cd /data/build/kernel/src
 vi /data/linux-4.4.10/arch/arm/boot/dts/acme-acqua.dts
 make $MAKE_ARGS acme-acqua.dtb
 cp arch/arm/boot/dts/acme-acqua.dtb ../deploy/boot/at91-sama5d3_acqua.dtb
-``
+```
 
