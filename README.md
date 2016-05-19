@@ -34,7 +34,7 @@ Compiling example:
 git clone <<my qt project code>> src
 mkdir -p build
 cd build
-/opt/Qt5/target/qmake ../src/<<my qt project>>.pro
+/data/Qt5/target/qmake ../src/<<my qt project>>.pro
 make -j8
 ```
 
