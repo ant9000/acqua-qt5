@@ -29,14 +29,14 @@ Qt5 stuff will be in:
 - /data/Qt5/target for cross-compiling for Acqua
 - /data/target-rootfs/opt/Qt5 should be copied to the board
 
-Cross-compiling example:
-``
+Compiling example:
+```
 git clone <<my qt project code>> src
-mkdir build
-cd build 
+mkdir -p build
+cd build
 /opt/Qt5/target/qmake ../src/<<my qt project>>.pro
 make -j8
-``
+```
 
 ## Kernel
 
