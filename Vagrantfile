@@ -52,7 +52,7 @@ Vagrant.configure(2) do |config|
     sudo rmdir /media/VBoxGuestAdditions
     rm VBoxGuestAdditions_5.0.20.iso
   SHELL
-  config.vm.provision "shell", privileged: "false", inline: <<-SHELL
+  config.vm.provision "shell", privileged: false, inline: <<-SHELL
     cd /vagrant
     cp rootfs.sh qt.sh kernel.sh /data/
     /data/rootfs.sh
