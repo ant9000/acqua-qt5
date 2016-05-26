@@ -5,9 +5,9 @@ Updated for Qt5.6.0 and Linux kernel 4.4.10.
 
 ## prerequisites
 
-- Vagrant 1.8.1
-- VirtualBox 5.0.20
-- 8 cores, 4GB of RAM and 25GB of free disk space
+- Vagrant, with plugin vagrant-vbguest (``vagrant plugin install vagrant-vbguest``)
+- VirtualBox
+- 4GB of RAM and 25GB of free disk space
 - internet connectivity
 
 ## usage

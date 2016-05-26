@@ -44,13 +44,6 @@ Vagrant.configure(2) do |config|
     fi
     mount -a
     chown vagrant.vagrant /data
-    wget http://download.virtualbox.org/virtualbox/5.0.20/VBoxGuestAdditions_5.0.20.iso
-    sudo mkdir /media/VBoxGuestAdditions
-    sudo mount -o loop,ro VBoxGuestAdditions_5.0.20.iso /media/VBoxGuestAdditions
-    sudo sh /media/VBoxGuestAdditions/VBoxLinuxAdditions.run
-    sudo umount /media/VBoxGuestAdditions
-    sudo rmdir /media/VBoxGuestAdditions
-    rm VBoxGuestAdditions_5.0.20.iso
   SHELL
   config.vm.provision "shell", privileged: false, inline: <<-SHELL
     cd /vagrant
