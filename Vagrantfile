@@ -5,7 +5,7 @@ Vagrant.configure(2) do |config|
   config.vm.box = "debian/jessie64"
   config.vm.synced_folder "shared", "/vagrant", type: "virtualbox"
   config.vm.provider "virtualbox" do |vb|
-    vb.memory = 3072
+    vb.memory = 4096
     vb.cpus = 8
     if !File.exist?("disk.vdi")
        vb.customize [
