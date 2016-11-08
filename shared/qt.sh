@@ -15,18 +15,18 @@ fi
 (
 cd downloads 
 
-if [ ! -f qt-everywhere-opensource-src-5.6.0.7z ]; then
-  wget http://download.qt.io/archive/qt/5.6/5.6.0/single/qt-everywhere-opensource-src-5.6.0.7z
+if [ ! -f qt-everywhere-opensource-src-5.7.0.7z ]; then
+  wget http://download.qt.io/archive/qt/5.7/5.7.0/single/qt-everywhere-opensource-src-5.7.0.7z
 fi
 )
 
-if [ ! -d qt-everywhere-opensource-src-5.6.0 ]; then
-  7z x downloads/qt-everywhere-opensource-src-5.6.0.7z
+if [ ! -d qt-everywhere-opensource-src-5.7.0 ]; then
+  7z x downloads/qt-everywhere-opensource-src-5.7.0.7z
 fi
 
-if [ ! -d qt-everywhere-opensource-src-5.6.0/qtbase/mkspecs/devices/linux-arm-acqua-a5-g++ ]; then
+if [ ! -d qt-everywhere-opensource-src-5.7.0/qtbase/mkspecs/devices/linux-arm-acqua-a5-g++ ]; then
   (
-    cd qt-everywhere-opensource-src-5.6.0/qtbase/mkspecs/devices/
+    cd qt-everywhere-opensource-src-5.7.0/qtbase/mkspecs/devices/
     cp -r linux-beagleboard-g++/ linux-arm-acqua-a5-g++/
     perl -i -ne '/Extra stuff|EGL|OPENGL|OPENVG/ || print' linux-arm-acqua-a5-g++/qmake.conf
     perl -i -pe 's/^(# qmake configuration for).*/$1 AcmeSystems Acqua A5/' linux-arm-acqua-a5-g++/qmake.conf
@@ -58,7 +58,7 @@ PREFIX=$BASE/Qt5
 (
   unset PKG_CONFIG_DIR PKG_CONFIG_LIBDIR PKG_CONFIG_SYSROOT_DIR
   cd $BASE/build/host
-  time $BASE/qt-everywhere-opensource-src-5.6.0/configure \
+  time $BASE/qt-everywhere-opensource-src-5.7.0/configure \
     -prefix $PREFIX/host \
     -opensource          \
     -confirm-license     \
@@ -78,7 +78,7 @@ unset QMAKESPEC
   export PKG_CONFIG_LIBDIR=$ROOTFS_PATH/usr/lib/pkgconfig/:$ROOTFS_PATH/usr/lib/arm-linux-gnueabihf/pkgconfig/:$ROOTFS_PATH/usr/share/pkgconfig
   export PKG_CONFIG_SYSROOT_DIR=$ROOTFS_PATH
   cd $BASE/build/target
-  time $BASE/qt-everywhere-opensource-src-5.6.0/configure \
+  time $BASE/qt-everywhere-opensource-src-5.7.0/configure \
     -device-option CROSS_COMPILE=arm-linux-gnueabihf- \
     -device linux-arm-acqua-a5-g++ \
     -hostprefix $PREFIX/target/    \

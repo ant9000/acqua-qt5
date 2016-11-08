@@ -15,27 +15,27 @@ fi
 (
 cd downloads 
 
-if [ ! -f linux-4.4.10.tar.xz ]; then
-  wget https://www.kernel.org/pub/linux/kernel/v4.x/linux-4.4.10.tar.xz
+if [ ! -f linux-4.4.16.tar.xz ]; then
+  wget https://cdn.kernel.org/pub/linux/kernel/v4.x/linux-4.4.16.tar.xz
 fi
 
-if [ ! -f linux-4.4.9.patch ]; then
-  wget https://raw.githubusercontent.com/AcmeSystems/acmepatches/master/linux-4.4.9.patch
+if [ ! -f linux-4.4.16.patch ]; then
+  wget https://raw.githubusercontent.com/AcmeSystems/acmepatches/master/linux-4.4.16.patch
 fi
 )
 
-if [ ! -d linux-4.4.10 ]; then
-  tar xf downloads/linux-4.4.10.tar.xz
+if [ ! -d linux-4.4.16 ]; then
+  tar xf downloads/linux-4.4.16.tar.xz
 fi
 
 (
-cd linux-4.4.10
+cd linux-4.4.16
 if [ ! -d .git ]; then
   git init .
   git add .
   git commit -m "Linux vanilla"
   git checkout -b acme
-  patch -p1 < ../downloads/linux-4.4.9.patch
+  patch -p1 < ../downloads/linux-4.4.16.patch
   git add .
   git commit -m "ACME configs, dts and LCD panels" -a
   patch -p1 < /vagrant/kernel-7panel.patch
@@ -56,7 +56,7 @@ if [ $CPU_COUNT -gt 0 ]; then
 fi
 
 (
-  cd linux-4.4.10/
+  cd linux-4.4.16/
   make mrproper
   make O=../build/kernel/src $MAKE_ARGS acme-acqua_defconfig
 

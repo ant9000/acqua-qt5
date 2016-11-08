@@ -1,7 +1,7 @@
-# acqua-qt56
+# acqua-qt5
 
 This Vagrantfile creates a Debian Jessie VM, preparing it as a cross-compiling machine for Acmesystems Acqua A5.
-Updated for Qt5.6.0 and Linux kernel 4.4.10.
+Updated for Qt5.7.0 and Linux kernel 4.4.16.
 
 ## prerequisites
 
@@ -41,7 +41,7 @@ make -j8
 ## Kernel
 
 Kernel stuff is organized as follows:
-- /data/linux-4.4.10 contains the kernel tree
+- /data/linux-4.4.16 contains the kernel tree
 - /data/build/kernel/src is the out-of-tree build directory
 - /data/build/kernel/deploy will contain the stuff to be deployed on the board
 
@@ -60,7 +60,7 @@ To configure the devicetree:
 ```
 export MAKE_ARGS="-j8 ARCH=arm CROSS_COMPILE=arm-linux-gnueabihf-"
 cd /data/build/kernel/src
-vi /data/linux-4.4.10/arch/arm/boot/dts/acme-acqua.dts
+vi /data/linux-4.4.16/arch/arm/boot/dts/acme-acqua.dts
 make $MAKE_ARGS acme-acqua.dtb
 cp arch/arm/boot/dts/acme-acqua.dtb ../deploy/boot/at91-sama5d3_acqua.dtb
 ```

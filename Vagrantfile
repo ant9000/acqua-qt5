@@ -29,10 +29,12 @@ Vagrant.configure(2) do |config|
     cp /vagrant/sources.list /etc/apt/
     chown root.root /etc/apt/sources.list
     echo "Acquire::Retries 5;" > /etc/apt/apt.conf.d/55retry-downloads
+    apt-get update
+    apt-get dist-upgrade
+    apt-get -y install curl
     curl http://emdebian.org/tools/debian/emdebian-toolchain-archive.key | apt-key add -
     dpkg --add-architecture armhf
     apt-get update
-    apt-get -y dist-upgrade 
     apt-get -y install tree parted vim-nox build-essential crossbuild-essential-armhf tree p7zip-full linux-headers-amd64
     if [ ! -e /dev/sdb1 ]; then
       parted -s /dev/sdb -- \
