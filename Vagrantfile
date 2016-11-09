@@ -46,6 +46,10 @@ Vagrant.configure(2) do |config|
     fi
     mount -a
     chown vagrant.vagrant /data
+    dd if=/dev/zero of=/swapfile bs=1024 count=1048576
+    chmod 0600 /swapfile
+    mkswap /swapfile
+    swapon /swapfile
   SHELL
   config.vm.provision "shell", privileged: false, inline: <<-SHELL
     cd /vagrant
