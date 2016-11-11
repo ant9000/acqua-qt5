@@ -38,8 +38,6 @@ if [ ! -d .git ]; then
   patch -p1 < ../downloads/linux-4.4.16.patch
   git add .
   git commit -m "ACME configs, dts and LCD panels" -a
-  patch -p1 < /vagrant/kernel-7panel.patch
-  git commit -m '7" panel' -a
 fi
 )
 
