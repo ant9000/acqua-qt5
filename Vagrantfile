@@ -19,10 +19,13 @@ Vagrant.configure(2) do |config|
     apt-get update
     apt-get -y install tree parted vim-nox build-essential crossbuild-essential-armhf tree p7zip-full
   SHELL
-  config.vm.provision "file", source: "vimrc", destination: "/home/vagrant/.vimrc"
+  config.vm.provision "file", source: "vimrc",     destination: "/home/vagrant/.vimrc"
   config.vm.provision "shell", privileged: false, inline: <<-SHELL
-    /vagrant/rootfs.sh
-    /vagrant/qt.sh
-    /vagrant/kernel.sh
+    # use /home/vagrant as working dir, since hard links in shared folders are not supported
+    cd /home/vagrant/
+    cp /vagrant/*.sh .
+    ./rootfs.sh
+    ./qt.sh
+    ./kernel.sh
   SHELL
 end
