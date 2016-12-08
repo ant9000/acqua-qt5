@@ -4,9 +4,12 @@ set -e
 BASE=$(dirname $(realpath $0))
 cd $BASE
 
-sudo apt-get -y install git libncurses5-dev
-git config --global user.name vagrant
-git config --global user.email vagrant@vagrant
+dpkg -s git > /dev/null 2>&1
+if [ $? != 0 ]; then
+  sudo apt-get -y install git libncurses5-dev
+  git config --global user.name vagrant
+  git config --global user.email vagrant@vagrant
+fi
 
 if [ ! -d downloads ]; then
   mkdir downloads
@@ -41,11 +44,6 @@ if [ ! -d .git ]; then
 fi
 )
 
-if [ ! -d build/kernel/src ]; then
-  mkdir -p build/kernel/src
-  mkdir -p build/kernel/deploy
-fi
-
 ########################################
 MAKE_ARGS="ARCH=arm CROSS_COMPILE=arm-linux-gnueabihf-"
 CPU_COUNT=`grep -c processor /proc/cpuinfo || true`
@@ -54,11 +52,18 @@ if [ $CPU_COUNT -gt 0 ]; then
 fi
 
 (
-  cd linux-4.4.16/
-  make mrproper
-  make O=../build/kernel/src $MAKE_ARGS acme-acqua_defconfig
+  if [ ! -d build/kernel/src ]; then
+    mkdir -p build/kernel/src
+    mkdir -p build/kernel/deploy
+    cd linux-4.4.16/
+    make mrproper
+    make O=../build/kernel/src $MAKE_ARGS acme-acqua_defconfig
+  fi
 
   cd $BASE/build/kernel/src
+  if [ "x$1" == "xmenuconfig" ]; then
+    make $MAKE_ARGS menuconfig
+  fi
   make $MAKE_ARGS zImage modules
   make $MAKE_ARGS acme-acqua.dtb
 
