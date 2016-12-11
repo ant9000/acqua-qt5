@@ -26,6 +26,6 @@ Vagrant.configure(2) do |config|
     cp /vagrant/*.sh .
     ./rootfs.sh
     ./qt.sh
-    ./kernel.sh
+    ./kernel.sh 2>&1 | tee build/kernel.log
   SHELL
 end
